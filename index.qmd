@@ -1,7 +1,13 @@
 ---
-title: "adallen93.github.io"
+title: "Home"
 ---
 
-This is a Quarto website.
+Hello there!
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+This is Austin Allen's personal website. While there isn't much to see right now, here's a little about Austin:
+
+* He is currently finishing his master's degree at Duke University and is scheduled to graduate in May of 2025 in the Biostatistics program.
+* He loves classical music, cheese, and trail running through the beautiful forests of North Carolina.
+* His interests include machine learning, bioinformatics, health, and statistical methods used in biological research.
+
+Connect with him on [LinkedIn]("https://www.linkedin.com/in/austindallen/").
