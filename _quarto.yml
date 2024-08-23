@@ -9,6 +9,12 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
+  page-footer:
+    right:
+      - icon: github
+        href: https://github.com/adallen93
+      - icon: linkedin
+        href: https://linkedin.com/in/austindallen
 
 format:
   html:
