@@ -9,7 +9,6 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
-  page-footer:
     right:
       - icon: github
         href: https://github.com/adallen93
