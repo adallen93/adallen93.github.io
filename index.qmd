@@ -4,7 +4,7 @@ title: "Home"
 
 Hello there!
 
-This is Austin Allen's personal website. While there isn't much to see right now, here's a little about Austin:
+This is Austin Allen's personal website. Here's a little about Austin:
 
 * He is currently finishing his master's degree at Duke University and is scheduled to graduate in May of 2025 in the Biostatistics program.
 * He loves classical music, cheese, and trail running through the beautiful forests of North Carolina.

@@ -1,16 +1,16 @@
 [
   {
+    "objectID": "statistical_concepts/index.html",
+    "href": "statistical_concepts/index.html",
+    "title": "Statistical Concepts",
+    "section": "",
+    "text": "Note: This page is still under construction. There will be links to demonstrations of the following concepts:\n\nProbability theory\nThe Central Limit Theorem\nStatistics\nSampling Distributions\nMethod of Moments Estimation\nLikelihood and Maximum Likelihood Estimation\nSufficiency and Completeness\nUniformly Minimum-variance Unbiased Estimators"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Home",
     "section": "",
-    "text": "Hello there!\nThis is Austin Allen’s personal website. While there isn’t much to see right now, here’s a little about Austin:\n\nHe is currently finishing his master’s degree at Duke University and is scheduled to graduate in May of 2025 in the Biostatistics program.\nHe loves classical music, cheese, and trail running through the beautiful forests of North Carolina.\nHis interests include machine learning, bioinformatics, health, and statistical methods used in biological research.\n\nConnect with him on LinkedIn."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
+    "text": "Hello there!\nThis is Austin Allen’s personal website. Here’s a little about Austin:\n\nHe is currently finishing his master’s degree at Duke University and is scheduled to graduate in May of 2025 in the Biostatistics program.\nHe loves classical music, cheese, and trail running through the beautiful forests of North Carolina.\nHis interests include machine learning, bioinformatics, health, and statistical methods used in biological research.\n\nConnect with him on LinkedIn."
   }
 ]
