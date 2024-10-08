@@ -1,0 +1,37 @@
+---
+title: "Career Goals and Interests"
+---
+
+
+I’m passionate about leveraging data and machine learning to solve complex problems, particularly in the biomedical and biotech sectors. My primary focus is on developing and applying predictive models that enhance decision-making and drive innovation in healthcare and life sciences.
+
+---
+
+## Skills and Expertise
+
+- **Programming & Tools**: Python, R, SQL, Linux, Shiny
+- **Data Science & Machine Learning**: Machine learning algorithms, neural networks, predictive modeling, statistical analysis
+- **Database & Research**: Database management, scientific research, large-scale data analysis
+
+---
+
+## What I'm Looking For
+
+I’m seeking roles that align with my expertise in data science and machine learning, with a focus on impactful, real-world applications. Ideally, I'm looking to work on innovative projects in roles such as:
+
+- **Machine Learning Engineer**
+- **Data Scientist**
+- **Data Analyst**
+- **Biostatistician**
+
+---
+
+## Areas of Interest
+- Neural networks & deep learning
+- Biomedical and biotech applications
+- Predictive modeling and diagnostics
+- Cutting-edge machine learning applications in healthcare
+
+---
+
+View my [resume](./resume.qmd).

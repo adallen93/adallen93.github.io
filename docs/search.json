@@ -12,5 +12,33 @@
     "title": "Home",
     "section": "",
     "text": "Hello there!\nThis is Austin Allen’s personal website. Here’s a little about Austin:\n\nHe is currently finishing his master’s degree at Duke University and is scheduled to graduate in May of 2025 in the Biostatistics program.\nHe loves classical music, cheese, and trail running through the beautiful forests of North Carolina.\nHis interests include machine learning, bioinformatics, health, and statistical methods used in biological research.\n\nConnect with him on LinkedIn."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Career Goals and Interests",
+    "section": "",
+    "text": "I’m passionate about leveraging data and machine learning to solve complex problems, particularly in the biomedical and biotech sectors. My primary focus is on developing and applying predictive models that enhance decision-making and drive innovation in healthcare and life sciences."
+  },
+  {
+    "objectID": "about.html#skills-and-expertise",
+    "href": "about.html#skills-and-expertise",
+    "title": "Career Goals and Interests",
+    "section": "Skills and Expertise",
+    "text": "Skills and Expertise\n\nProgramming & Tools: Python, R, SQL, Linux, Shiny\nData Science & Machine Learning: Machine learning algorithms, neural networks, predictive modeling, statistical analysis\nDatabase & Research: Database management, scientific research, large-scale data analysis"
+  },
+  {
+    "objectID": "about.html#what-im-looking-for",
+    "href": "about.html#what-im-looking-for",
+    "title": "Career Goals and Interests",
+    "section": "What I’m Looking For",
+    "text": "What I’m Looking For\nI’m seeking roles that align with my expertise in data science and machine learning, with a focus on impactful, real-world applications. Ideally, I’m looking to work on innovative projects in roles such as:\n\nMachine Learning Engineer\nData Scientist\nData Analyst\nBiostatistician"
+  },
+  {
+    "objectID": "about.html#areas-of-interest",
+    "href": "about.html#areas-of-interest",
+    "title": "Career Goals and Interests",
+    "section": "Areas of Interest",
+    "text": "Areas of Interest\n\nNeural networks & deep learning\nBiomedical and biotech applications\nPredictive modeling and diagnostics\nCutting-edge machine learning applications in healthcare\n\n\nView my resume."
   }
 ]
