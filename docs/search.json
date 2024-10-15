@@ -7,38 +7,101 @@
     "text": "Note: This page is still under construction. There will be links to demonstrations of the following concepts:\n\nProbability theory\nThe Central Limit Theorem\nStatistics\nSampling Distributions\nMethod of Moments Estimation\nLikelihood and Maximum Likelihood Estimation\nSufficiency and Completeness\nUniformly Minimum-variance Unbiased Estimators"
   },
   {
+    "objectID": "projects/shiny.html",
+    "href": "projects/shiny.html",
+    "title": "To Shiny or Not to Shiny?",
+    "section": "",
+    "text": "Shiny is a popular framework that originated in R, primarily used to build interactive web applications directly from data analysis code. The good news is, Shiny is not just an R thing anymore! You can now use Shiny with Python to create dynamic web apps with ease, just like you would in R.\nIn this tutorial, we’ll walk you through how to set up a basic Shiny app using Python. You’ll learn how to:\n\nInstall and configure Shiny for Python.\nSet up the basic structure of a Shiny app.\nBuild an interactive app that responds to user inputs.\nDeploy the app locally and understand the core functionality.\n\n\n\nTo get started, you’ll need to install shiny for Python. You can do this by using pip:\npip install shiny\nAdditionally, we will use pandas for handling data manipulation:\npip install pandas\n\n\n\nEvery Shiny app consists of two major components:\n\nUI (User Interface): Defines how the app looks, including layouts, widgets, and styling.\nServer: Defines the logic and behavior, including responses to user inputs.\n\nIn Shiny for Python, we define these components using a combination of Python functions.\n\n\nA typical Shiny app file in Python might look like this:\napp.py # Note: In this file we define the UI and the server logic \nHere’s the basic skeleton for our Shiny app:\nfrom shiny import App, ui\n\n# Define the UI\napp_ui = ui.page_fluid(\n    ui.h2(\"Welcome to the Shiny for Python Tutorial\"),\n    ui.input_slider(\"num\", \"Choose a number\", 1, 100, 50),\n    ui.output_text_verbatim(\"output_text\"),\n)\n\n# Define the server logic\ndef server(input, output, session):\n    @output\n    @ui.render_text\n    def output_text():\n        return f\"You selected {input.num()}\"\n\n# Combine UI and server into an app\napp = App(app_ui, server)\n\n# To run this app, execute `shiny run app.py` in the terminal\n\n\n\n\nUI Section:\n\nui.page_fluid: This creates a fluid page that adjusts its layout dynamically to fit the screen.\nui.h2: Adds an H2 header text to the page.\nui.input_slider: Creates a slider input widget where users can select a number from a range (1 to 100).\nui.output_text_verbatim: Displays the output of the selected value in a “text area.”\n\nServer Section:\n\n@output and @ui.render_text: These decorators indicate that a specific block of code will handle rendering text output.\nThe function output_text() returns the text “You selected X,” where X is the number selected on the slider by the user."
+  },
+  {
+    "objectID": "projects/shiny.html#installation",
+    "href": "projects/shiny.html#installation",
+    "title": "To Shiny or Not to Shiny?",
+    "section": "",
+    "text": "To get started, you’ll need to install shiny for Python. You can do this by using pip:\npip install shiny\nAdditionally, we will use pandas for handling data manipulation:\npip install pandas"
+  },
+  {
+    "objectID": "projects/shiny.html#setting-up-the-shiny-app-structure",
+    "href": "projects/shiny.html#setting-up-the-shiny-app-structure",
+    "title": "To Shiny or Not to Shiny?",
+    "section": "",
+    "text": "Every Shiny app consists of two major components:\n\nUI (User Interface): Defines how the app looks, including layouts, widgets, and styling.\nServer: Defines the logic and behavior, including responses to user inputs.\n\nIn Shiny for Python, we define these components using a combination of Python functions.\n\n\nA typical Shiny app file in Python might look like this:\napp.py # Note: In this file we define the UI and the server logic \nHere’s the basic skeleton for our Shiny app:\nfrom shiny import App, ui\n\n# Define the UI\napp_ui = ui.page_fluid(\n    ui.h2(\"Welcome to the Shiny for Python Tutorial\"),\n    ui.input_slider(\"num\", \"Choose a number\", 1, 100, 50),\n    ui.output_text_verbatim(\"output_text\"),\n)\n\n# Define the server logic\ndef server(input, output, session):\n    @output\n    @ui.render_text\n    def output_text():\n        return f\"You selected {input.num()}\"\n\n# Combine UI and server into an app\napp = App(app_ui, server)\n\n# To run this app, execute `shiny run app.py` in the terminal\n\n\n\n\nUI Section:\n\nui.page_fluid: This creates a fluid page that adjusts its layout dynamically to fit the screen.\nui.h2: Adds an H2 header text to the page.\nui.input_slider: Creates a slider input widget where users can select a number from a range (1 to 100).\nui.output_text_verbatim: Displays the output of the selected value in a “text area.”\n\nServer Section:\n\n@output and @ui.render_text: These decorators indicate that a specific block of code will handle rendering text output.\nThe function output_text() returns the text “You selected X,” where X is the number selected on the slider by the user."
+  },
+  {
+    "objectID": "projects/shiny.html#building-an-interactive-shiny-app-with-data",
+    "href": "projects/shiny.html#building-an-interactive-shiny-app-with-data",
+    "title": "To Shiny or Not to Shiny?",
+    "section": "3. Building an Interactive Shiny App with Data",
+    "text": "3. Building an Interactive Shiny App with Data\nLet’s take the app a step further and create a more practical example using real data. In this example, we will visualize a dataset interactively.\n\nObjective:\nWe’ll use a built-in dataset (Python’s seaborn dataset) to create an app that allows the user to filter cars by miles per gallon (MPG) and display a simple table of results.\n\n\nStep-by-Step Example\nimport pandas as pd\nimport seaborn as sns\nfrom shiny import App, ui\n\n# Load a dataset from seaborn (similar to R's mtcars)\ndf = sns.load_dataset(\"mpg\").dropna()\n\n# Define the UI\napp_ui = ui.page_fluid(\n    ui.h2(\"Car Data Explorer (MPG Filter)\"),\n    ui.input_slider(\"mpg\", \"Filter by MPG\", min(df[\"mpg\"]), max(df[\"mpg\"]), 20),\n    ui.output_table(\"filtered_table\"),\n)\n\n# Define the server logic\ndef server(input, output, session):\n    @output\n    @ui.render_table\n    def filtered_table():\n        # Filter the dataframe by the selected MPG value\n        filtered_df = df[df[\"mpg\"] &gt;= input.mpg()]\n        return filtered_df[[\"mpg\", \"name\", \"cylinders\", \"horsepower\"]]\n\n# Create the app\napp = App(app_ui, server)\n\n# Run this app using `shiny run --reload app.py`\n\n\nExplanation:\n\nDataset Loading:\n\nWe’re using seaborn to load the mpg dataset, which contains car data. We clean it up by dropping any missing values (dropna()).\n\nUI Section:\n\nui.input_slider: Allows users to filter cars based on miles per gallon (MPG).\nui.output_table: Displays a filtered table of cars that meet the MPG criteria.\n\nServer Section:\n\nIn the filtered_table() function, the dataset is filtered according to the MPG value selected by the user. We display selected columns like mpg, name, cylinders, and horsepower."
+  },
+  {
+    "objectID": "projects/shiny.html#adding-more-interactivity",
+    "href": "projects/shiny.html#adding-more-interactivity",
+    "title": "To Shiny or Not to Shiny?",
+    "section": "4. Adding More Interactivity",
+    "text": "4. Adding More Interactivity\nYou can enhance the app by adding more interactive components, such as dropdowns, checkboxes, or plots.\n\nExample: Adding a Plot with Plotly\nLet’s extend the previous app by adding a scatter plot of MPG against horsepower, updating based on the user’s MPG filter.\nimport pandas as pd\nimport seaborn as sns\nimport plotly.express as px\nfrom shiny import App, ui\n\n# Load the dataset\ndf = sns.load_dataset(\"mpg\").dropna()\n\n# Define the UI\napp_ui = ui.page_fluid(\n    ui.h2(\"Car Data Explorer with Plot (MPG Filter)\"),\n    ui.input_slider(\"mpg\", \"Filter by MPG\", min(df[\"mpg\"]), max(df[\"mpg\"]), 20),\n    ui.output_plot(\"mpg_plot\"),\n    ui.output_table(\"filtered_table\"),\n)\n\n# Define the server logic\ndef server(input, output, session):\n    @output\n    @ui.render_table\n    def filtered_table():\n        filtered_df = df[df[\"mpg\"] &gt;= input.mpg()]\n        return filtered_df[[\"mpg\", \"name\", \"cylinders\", \"horsepower\"]]\n\n    @output\n    @ui.render_plot\n    def mpg_plot():\n        filtered_df = df[df[\"mpg\"] &gt;= input.mpg()]\n        fig = px.scatter(\n            filtered_df, \n            x=\"horsepower\", \n            y=\"mpg\", \n            hover_data=[\"name\"], \n            title=\"MPG vs Horsepower\"\n        )\n        return fig\n\n# Create the app\napp = App(app_ui, server)\n\n# Run this app using `shiny run --reload app.py`\n\n\nWhat changed?\n\nPlotly Integration: We use plotly.express to generate an interactive scatter plot. The plot updates based on the user-selected MPG filter.\nUI Additions: We added ui.output_plot to render the plot dynamically."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Home",
+    "title": "Austin Allen",
     "section": "",
-    "text": "Hello there!\nThis is Austin Allen’s personal website. Here’s a little about Austin:\n\nHe is currently finishing his master’s degree at Duke University and is scheduled to graduate in May of 2025 in the Biostatistics program.\nHe loves classical music, cheese, and trail running through the beautiful forests of North Carolina.\nHis interests include machine learning, bioinformatics, health, and statistical methods used in biological research.\n\nConnect with him on LinkedIn."
+    "text": "Hi, I’m Austin Allen, a biostatistics graduate student at Duke University. I love using data science and machine learning to drive advancements in healthcare and biotech. Whether it’s predictive modeling, statistical analysis or cheese, you will find me eager to connect and talk about the things that make me tick.\nUse this website to explore my projects and interests. You can find contact information on the Contact page.\n\n\n\n\nAbout Me: Learn more about my background and expertise.\nProjects: Dive into the projects that showcase my skills in predictive modeling, data science, and beyond.\nResume: Take a look at my professional experiences and skills.\n\n\nFeel free to reach out if you’re interested in collaboration or learning more about my work!"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Career Goals and Interests",
+    "objectID": "index.html#welcome-to-my-portfolio",
+    "href": "index.html#welcome-to-my-portfolio",
+    "title": "Austin Allen",
     "section": "",
-    "text": "I’m passionate about leveraging data and machine learning to solve complex problems, particularly in the biomedical and biotech sectors. My primary focus is on developing and applying predictive models that enhance decision-making and drive innovation in healthcare and life sciences."
+    "text": "Hi, I’m Austin Allen, a biostatistics graduate student at Duke University. I love using data science and machine learning to drive advancements in healthcare and biotech. Whether it’s predictive modeling, statistical analysis or cheese, you will find me eager to connect and talk about the things that make me tick.\nUse this website to explore my projects and interests. You can find contact information on the Contact page.\n\n\n\n\nAbout Me: Learn more about my background and expertise.\nProjects: Dive into the projects that showcase my skills in predictive modeling, data science, and beyond.\nResume: Take a look at my professional experiences and skills.\n\n\nFeel free to reach out if you’re interested in collaboration or learning more about my work!"
   },
   {
-    "objectID": "about.html#skills-and-expertise",
-    "href": "about.html#skills-and-expertise",
-    "title": "Career Goals and Interests",
+    "objectID": "about/index.html",
+    "href": "about/index.html",
+    "title": "About Austin",
+    "section": "",
+    "text": "Currently finishing my master’s program at Duke, I will be graduating May of 2025 with a degree in Biostatisticss. I came to Duke from BYU-Idaho studying statistics and data science. Now that I’m close to the end of my schooling, let me tell you about all that comes next.\nI’m passionate about leveraging data and machine learning to solve complex problems, particularly in the biomedical and biotech sectors. My primary focus is on developing and applying predictive models that enhance decision-making and drive innovation in healthcare and life sciences."
+  },
+  {
+    "objectID": "about/index.html#skills-and-expertise",
+    "href": "about/index.html#skills-and-expertise",
+    "title": "About Austin",
     "section": "Skills and Expertise",
     "text": "Skills and Expertise\n\nProgramming & Tools: Python, R, SQL, Linux, Shiny\nData Science & Machine Learning: Machine learning algorithms, neural networks, predictive modeling, statistical analysis\nDatabase & Research: Database management, scientific research, large-scale data analysis"
   },
   {
-    "objectID": "about.html#what-im-looking-for",
-    "href": "about.html#what-im-looking-for",
-    "title": "Career Goals and Interests",
+    "objectID": "about/index.html#what-im-looking-for",
+    "href": "about/index.html#what-im-looking-for",
+    "title": "About Austin",
     "section": "What I’m Looking For",
-    "text": "What I’m Looking For\nI’m seeking roles that align with my expertise in data science and machine learning, with a focus on impactful, real-world applications. Ideally, I’m looking to work on innovative projects in roles such as:\n\nMachine Learning Engineer\nData Scientist\nData Analyst\nBiostatistician"
+    "text": "What I’m Looking For\nI’m seeking roles that align with my expertise in data science and machine learning, with a focus on impactful, real-world applications. While the specific type of data I’ll focus on is still evolving. I enjoy the challenge of working with messy EHR data and am fascinated by large-scale ’omics data and could also see myself exploring data from wearable devices or medical imaging. But regardless of the type of data, you will find me in the futre building models that help investigators tackle complex health-related problems."
   },
   {
-    "objectID": "about.html#areas-of-interest",
-    "href": "about.html#areas-of-interest",
-    "title": "Career Goals and Interests",
+    "objectID": "about/index.html#areas-of-interest",
+    "href": "about/index.html#areas-of-interest",
+    "title": "About Austin",
     "section": "Areas of Interest",
     "text": "Areas of Interest\n\nNeural networks & deep learning\nBiomedical and biotech applications\nPredictive modeling and diagnostics\nCutting-edge machine learning applications in healthcare\n\n\nView my resume."
+  },
+  {
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Personal Projects",
+    "section": "",
+    "text": "Notes\n\n\n\n\n\n\nLinear Regression When to Use: Predicting a continuous target variable from one or more explanatory variables. Avoid When: There’s a nonlinear relationship between features and the target, or features are highly correlated (multicollinearity). Loss Function: Mean Squared Error (MSE) python Copy code from sklearn.linear_model import LinearRegression from sklearn.metrics import mean_squared_error\n\nX_train, y_train = [[1], [2], [3]], [1, 2, 3] model = LinearRegression().fit(X_train, y_train) predictions = model.predict(X_train) loss = mean_squared_error(y_train, predictions) 2. Logistic Regression When to Use: Binary classification problems. Avoid When: The target is not binary or if data is non-linearly separable. Loss Function: Log Loss (Binary Cross-Entropy) python Copy code from sklearn.linear_model import LogisticRegression from sklearn.metrics import log_loss\nX_train, y_train = [[1], [2], [3]], [0, 1, 0] model = LogisticRegression().fit(X_train, y_train) predictions = model.predict_proba(X_train) loss = log_loss(y_train, predictions) 3. Support Vector Machines (SVM) When to Use: High-dimensional spaces, binary/multi-class classification. Avoid When: Large datasets, or noisy data. Loss Function: Hinge Loss python Copy code from sklearn.svm import SVC\nX_train, y_train = [[1], [2], [3]], [0, 1, 0] model = SVC(kernel=‘linear’).fit(X_train, y_train) predictions = model.predict(X_train) 4. Decision Trees When to Use: Interpretability is important, non-linear relationships. Avoid When: Small datasets, high variance (prone to overfitting). Loss Function: Gini Impurity or Entropy python Copy code from sklearn.tree import DecisionTreeClassifier\nX_train, y_train = [[1], [2], [3]], [0, 1, 0] model = DecisionTreeClassifier().fit(X_train, y_train) predictions = model.predict(X_train) 5. Random Forest When to Use: Non-linear data, reducing overfitting in decision trees. Avoid When: High-dimensional datasets (high computational cost). Loss Function: Gini Impurity or Entropy (same as Decision Trees) python Copy code from sklearn.ensemble import RandomForestClassifier\nX_train, y_train = [[1], [2], [3]], [0, 1, 0] model = RandomForestClassifier().fit(X_train, y_train) predictions = model.predict(X_train) 6. K-Nearest Neighbors (KNN) When to Use: Simple classification tasks with a small dataset. Avoid When: Large datasets (computationally expensive). Loss Function: Custom distance function (typically Euclidean) python Copy code from sklearn.neighbors import KNeighborsClassifier\nX_train, y_train = [[1], [2], [3]], [0, 1, 0] model = KNeighborsClassifier(n_neighbors=2).fit(X_train, y_train) predictions = model.predict(X_train) 7. Naive Bayes When to Use: Text classification, spam detection, etc. Avoid When: Strong feature correlations exist. Loss Function: Log Loss (Binary Cross-Entropy) python Copy code from sklearn.naive_bayes import GaussianNB\nX_train, y_train = [[1], [2], [3]], [0, 1, 0] model = GaussianNB().fit(X_train, y_train) predictions = model.predict(X_train) 8. Gradient Boosting (GBM) When to Use: Complex datasets, high prediction accuracy. Avoid When: Overfitting risks, or need for fast inference. Loss Function: Custom loss (e.g., Log Loss for classification) python Copy code from sklearn.ensemble import GradientBoostingClassifier\nX_train, y_train = [[1], [2], [3]], [0, 1, 0] model = GradientBoostingClassifier().fit(X_train, y_train) predictions = model.predict(X_train) 9. XGBoost When to Use: Large datasets, classification and regression. Avoid When: Simple problems that don’t require much power. Loss Function: Custom loss (Log Loss, MSE) python Copy code from xgboost import XGBClassifier\nX_train, y_train = [[1], [2], [3]], [0, 1, 0] model = XGBClassifier().fit(X_train, y_train) predictions = model.predict(X_train) 10. Neural Networks When to Use: Complex patterns (e.g., image, voice recognition). Avoid When: Small datasets or limited computing resources. Loss Function: Binary Cross-Entropy, Categorical Cross-Entropy python Copy code from tensorflow.keras.models import Sequential from tensorflow.keras.layers import Dense\nmodel = Sequential([Dense(10, activation=‘relu’), Dense(1, activation=‘sigmoid’)]) model.compile(optimizer=‘adam’, loss=‘binary_crossentropy’) 11. K-Means Clustering When to Use: Unsupervised clustering when you know the number of clusters. Avoid When: Non-spherical data or if the number of clusters is unknown. Loss Function: Sum of Squared Errors (SSE) python Copy code from sklearn.cluster import KMeans\nX_train = [[1], [2], [3], [4], [5]] model = KMeans(n_clusters=2).fit(X_train) clusters = model.predict(X_train) 12. Principal Component Analysis (PCA) When to Use: Dimensionality reduction for visualization or pre-processing. Avoid When: Interpretation of individual components is crucial. Loss Function: Reconstruction error (sum of squared distances) python Copy code from sklearn.decomposition import PCA\nX_train = [[1, 2], [2, 3], [3, 4]] model = PCA(n_components=1).fit(X_train) reduced_data = model.transform(X_train) 13. Linear Discriminant Analysis (LDA) When to Use: Classification, feature extraction when groups are linearly separable. Avoid When: Data is not linearly separable. Loss Function: Classification error python Copy code from sklearn.discriminant_analysis import LinearDiscriminantAnalysis\nX_train, y_train = [[1], [2], [3]], [0, 1, 0] model = LinearDiscriminantAnalysis().fit(X_train, y_train) predictions = model.predict(X_train) 14. Time Series Forecasting (ARIMA) When to Use: Time series data with a trend or seasonality. Avoid When: Data does not exhibit autocorrelation. Loss Function: Mean Squared Error (MSE) python Copy code from statsmodels.tsa.arima.model import ARIMA\nX_train = [1, 2, 3, 4, 5] model = ARIMA(X_train, order=(1, 1, 1)).fit() predictions = model.forecast(steps=5) 15. Reinforcement Learning (Q-Learning) When to Use: Problems involving sequential decision making (e.g., games). Avoid When: There is no clear reward structure. Loss Function: Bellman Equation Loss python Copy code import numpy as np\nQ = np.zeros((5, 5)) # Update rule: Q(state, action) = (1 - alpha) * Q(state, action) + alpha * (reward + gamma * max(Q(next_state, :))) Summary Each method has a specific use case and limitations. The loss function represents the “penalty” for incorrect predictions, and the sample code shows a basic implementation. Choosing the right model depends on your data and the problem context."
+  },
+  {
+    "objectID": "projects/index.html#machine-learning-algorithms",
+    "href": "projects/index.html#machine-learning-algorithms",
+    "title": "Personal Projects",
+    "section": "Machine Learning Algorithms",
+    "text": "Machine Learning Algorithms\nHere are a few projects that demonstrate my ML capabilities.\n\nLinear Regression (OLS)\n\n[summary] View Project\n\n\n\nLogistic Regression\n\n[summary] View Project\n\n\n\nSupport Vector Machines (SVM)\n\n[summary] View Project\n\n\n\nDecision Trees\n\n[summary] View Project\n\n\n\nRandom Forest\n\n[summary] View Project\n\n\n\nK-Nearest Neighbors (KNN)\n\n[summary] View Project\n\n\n\nGradient Boosting\n\n[summary] View Project\n\n\n\nXGBoost\n\n[summary] View Project\n\n\n\nK-Means Clustering\n\n[summary] View Project\n\n\n\nPrincipal Component Analysis (PCA)\n\n[summary] View Project\n\n\n\nReinforcement Learning\n\n[summary] View Project\n\n\n\nTime Series Forecasting\n\n[summary] View Project"
+  },
+  {
+    "objectID": "projects/index.html#other-data-science-tools",
+    "href": "projects/index.html#other-data-science-tools",
+    "title": "Personal Projects",
+    "section": "Other Data Science Tools",
+    "text": "Other Data Science Tools\n\nShiny\n\nTo Shiny or Not to Shiny? Or Just Plain Not Too Shiny? A simple tutorial describing how to implement a Python program using Shiny. Yes, you can use Shiny in Python. It’s not just an R thing. View Project"
   }
 ]

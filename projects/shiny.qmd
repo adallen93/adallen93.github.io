@@ -1,0 +1,203 @@
+---
+title: "To Shiny or Not to Shiny?"
+subtitle: "Or Just Plain Not Too Shiny?"
+---
+
+# Introduction
+
+Shiny is a popular framework that originated in R, primarily used to build interactive web applications directly from data analysis code. The good news is, **Shiny is not just an R thing anymore**! You can now use **Shiny with Python** to create dynamic web apps with ease, just like you would in R.
+
+In this tutorial, we'll walk you through how to set up a basic Shiny app using Python. You'll learn how to:
+
+- Install and configure Shiny for Python.
+- Set up the basic structure of a Shiny app.
+- Build an interactive app that responds to user inputs.
+- Deploy the app locally and understand the core functionality.
+
+## 1. Installation
+
+To get started, you'll need to install `shiny` for Python. You can do this by using `pip`:
+
+```bash
+pip install shiny
+```
+
+Additionally, we will use pandas for handling data manipulation:
+
+```bash
+pip install pandas
+```
+
+## 2. Setting Up the Shiny App Structure 
+
+
+Every Shiny app consists of two major components:
+
+1. UI (User Interface): Defines how the app looks, including layouts, widgets, and styling.
+2. Server: Defines the logic and behavior, including responses to user inputs.
+
+In Shiny for Python, we define these components using a combination of Python functions.
+
+### Basic File Structure
+
+A typical Shiny app file in Python might look like this:
+
+```bash
+app.py # Note: In this file we define the UI and the server logic 
+```
+
+Here's the basic skeleton for our Shiny app:
+
+```python
+from shiny import App, ui
+
+# Define the UI
+app_ui = ui.page_fluid(
+    ui.h2("Welcome to the Shiny for Python Tutorial"),
+    ui.input_slider("num", "Choose a number", 1, 100, 50),
+    ui.output_text_verbatim("output_text"),
+)
+
+# Define the server logic
+def server(input, output, session):
+    @output
+    @ui.render_text
+    def output_text():
+        return f"You selected {input.num()}"
+
+# Combine UI and server into an app
+app = App(app_ui, server)
+
+# To run this app, execute `shiny run app.py` in the terminal
+
+```
+
+
+### Neat, but what does it mean? 
+
+* UI Section:
+  * ui.page_fluid: This creates a fluid page that adjusts its layout dynamically to fit the screen.
+  * ui.h2: Adds an H2 header text to the page.
+  * ui.input_slider: Creates a slider input widget where users can select a number from a range (1 to 100).
+  * ui.output_text_verbatim: Displays the output of the selected value in a "text area."
+* Server Section:
+  * @output and @ui.render_text: These decorators indicate that a specific block of code will handle rendering text output.
+  * The function `output_text()` returns the text "You selected X," where X is the number selected on the slider by the user.
+
+# Running the App
+
+Once you’ve written your app, you can run it using the shiny run command. Save your app as app.py and use the following in your terminal:
+
+
+```bash
+shiny run --reload app.py
+```
+
+## 3. Building an Interactive Shiny App with Data
+Let’s take the app a step further and create a more practical example using real data. In this example, we will visualize a dataset interactively.
+
+### Objective:
+
+We’ll use a built-in dataset (Python's seaborn dataset) to create an app that allows the user to filter cars by miles per gallon (MPG) and display a simple table of results.
+
+### Step-by-Step Example
+
+```python
+import pandas as pd
+import seaborn as sns
+from shiny import App, ui
+
+# Load a dataset from seaborn (similar to R's mtcars)
+df = sns.load_dataset("mpg").dropna()
+
+# Define the UI
+app_ui = ui.page_fluid(
+    ui.h2("Car Data Explorer (MPG Filter)"),
+    ui.input_slider("mpg", "Filter by MPG", min(df["mpg"]), max(df["mpg"]), 20),
+    ui.output_table("filtered_table"),
+)
+
+# Define the server logic
+def server(input, output, session):
+    @output
+    @ui.render_table
+    def filtered_table():
+        # Filter the dataframe by the selected MPG value
+        filtered_df = df[df["mpg"] >= input.mpg()]
+        return filtered_df[["mpg", "name", "cylinders", "horsepower"]]
+
+# Create the app
+app = App(app_ui, server)
+
+# Run this app using `shiny run --reload app.py`
+
+```
+
+### Explanation:
+
+* Dataset Loading:
+  * We're using seaborn to load the mpg dataset, which contains car data. We clean it up by dropping any missing values (dropna()).
+* UI Section:
+  * ui.input_slider: Allows users to filter cars based on miles per gallon (MPG).
+  * ui.output_table: Displays a filtered table of cars that meet the MPG criteria.
+* Server Section:
+  * In the filtered_table() function, the dataset is filtered according to the MPG value selected by the user. We display selected columns like mpg, name, cylinders, and horsepower.
+
+
+## 4. Adding More Interactivity
+
+You can enhance the app by adding more interactive components, such as dropdowns, checkboxes, or plots.
+
+### Example: Adding a Plot with Plotly
+
+Let’s extend the previous app by adding a scatter plot of MPG against horsepower, updating based on the user’s MPG filter.
+
+
+```python
+import pandas as pd
+import seaborn as sns
+import plotly.express as px
+from shiny import App, ui
+
+# Load the dataset
+df = sns.load_dataset("mpg").dropna()
+
+# Define the UI
+app_ui = ui.page_fluid(
+    ui.h2("Car Data Explorer with Plot (MPG Filter)"),
+    ui.input_slider("mpg", "Filter by MPG", min(df["mpg"]), max(df["mpg"]), 20),
+    ui.output_plot("mpg_plot"),
+    ui.output_table("filtered_table"),
+)
+
+# Define the server logic
+def server(input, output, session):
+    @output
+    @ui.render_table
+    def filtered_table():
+        filtered_df = df[df["mpg"] >= input.mpg()]
+        return filtered_df[["mpg", "name", "cylinders", "horsepower"]]
+
+    @output
+    @ui.render_plot
+    def mpg_plot():
+        filtered_df = df[df["mpg"] >= input.mpg()]
+        fig = px.scatter(
+            filtered_df, 
+            x="horsepower", 
+            y="mpg", 
+            hover_data=["name"], 
+            title="MPG vs Horsepower"
+        )
+        return fig
+
+# Create the app
+app = App(app_ui, server)
+
+# Run this app using `shiny run --reload app.py`
+```
+
+### What changed? 
+
+* Plotly Integration: We use plotly.express to generate an interactive scatter plot. The plot updates based on the user-selected MPG filter.
+* UI Additions: We added ui.output_plot to render the plot dynamically.

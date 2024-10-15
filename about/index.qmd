@@ -1,6 +1,8 @@
 ---
-title: "Career Goals and Interests"
+title: "About Austin"
 ---
+
+Currently finishing my master's program at Duke, I will be graduating May of 2025 with a degree in Biostatisticss. I came to Duke from BYU-Idaho studying statistics and data science. Now that I'm close to the end of my schooling, let me tell you about all that comes next.
 
 
 I’m passionate about leveraging data and machine learning to solve complex problems, particularly in the biomedical and biotech sectors. My primary focus is on developing and applying predictive models that enhance decision-making and drive innovation in healthcare and life sciences.
@@ -17,12 +19,7 @@ I’m passionate about leveraging data and machine learning to solve complex pro
 
 ## What I'm Looking For
 
-I’m seeking roles that align with my expertise in data science and machine learning, with a focus on impactful, real-world applications. Ideally, I'm looking to work on innovative projects in roles such as:
-
-- **Machine Learning Engineer**
-- **Data Scientist**
-- **Data Analyst**
-- **Biostatistician**
+I’m seeking roles that align with my expertise in data science and machine learning, with a focus on impactful, real-world applications. While the specific type of data I'll focus on is still evolving. I enjoy the challenge of working with messy EHR data and am fascinated by large-scale 'omics data and could also see myself exploring data from wearable devices or medical imaging. But regardless of the type of data, you will find me in the futre building models that help investigators tackle complex health-related problems.
 
 ---
 

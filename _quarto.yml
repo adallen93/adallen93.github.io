@@ -8,10 +8,12 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: resume.qmd
-        text: Resume
-      - href: about.qmd
+      - href: about/index.qmd
         text: About
+      - href: projects/index.qmd
+        text: Projects
+      - href: resume/index.qmd
+        text: Resume
     right:
       - icon: github
         href: https://github.com/adallen93

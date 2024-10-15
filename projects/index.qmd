@@ -1,0 +1,271 @@
+---
+title: "Personal Projects"
+---
+
+::: {.callout-important collapse="true"}
+
+## Notes
+
+1. Linear Regression
+When to Use: Predicting a continuous target variable from one or more explanatory variables.
+Avoid When: There’s a nonlinear relationship between features and the target, or features are highly correlated (multicollinearity).
+Loss Function: Mean Squared Error (MSE)
+python
+Copy code
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+
+X_train, y_train = [[1], [2], [3]], [1, 2, 3]
+model = LinearRegression().fit(X_train, y_train)
+predictions = model.predict(X_train)
+loss = mean_squared_error(y_train, predictions)
+2. Logistic Regression
+When to Use: Binary classification problems.
+Avoid When: The target is not binary or if data is non-linearly separable.
+Loss Function: Log Loss (Binary Cross-Entropy)
+python
+Copy code
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import log_loss
+
+X_train, y_train = [[1], [2], [3]], [0, 1, 0]
+model = LogisticRegression().fit(X_train, y_train)
+predictions = model.predict_proba(X_train)
+loss = log_loss(y_train, predictions)
+3. Support Vector Machines (SVM)
+When to Use: High-dimensional spaces, binary/multi-class classification.
+Avoid When: Large datasets, or noisy data.
+Loss Function: Hinge Loss
+python
+Copy code
+from sklearn.svm import SVC
+
+X_train, y_train = [[1], [2], [3]], [0, 1, 0]
+model = SVC(kernel='linear').fit(X_train, y_train)
+predictions = model.predict(X_train)
+4. Decision Trees
+When to Use: Interpretability is important, non-linear relationships.
+Avoid When: Small datasets, high variance (prone to overfitting).
+Loss Function: Gini Impurity or Entropy
+python
+Copy code
+from sklearn.tree import DecisionTreeClassifier
+
+X_train, y_train = [[1], [2], [3]], [0, 1, 0]
+model = DecisionTreeClassifier().fit(X_train, y_train)
+predictions = model.predict(X_train)
+5. Random Forest
+When to Use: Non-linear data, reducing overfitting in decision trees.
+Avoid When: High-dimensional datasets (high computational cost).
+Loss Function: Gini Impurity or Entropy (same as Decision Trees)
+python
+Copy code
+from sklearn.ensemble import RandomForestClassifier
+
+X_train, y_train = [[1], [2], [3]], [0, 1, 0]
+model = RandomForestClassifier().fit(X_train, y_train)
+predictions = model.predict(X_train)
+6. K-Nearest Neighbors (KNN)
+When to Use: Simple classification tasks with a small dataset.
+Avoid When: Large datasets (computationally expensive).
+Loss Function: Custom distance function (typically Euclidean)
+python
+Copy code
+from sklearn.neighbors import KNeighborsClassifier
+
+X_train, y_train = [[1], [2], [3]], [0, 1, 0]
+model = KNeighborsClassifier(n_neighbors=2).fit(X_train, y_train)
+predictions = model.predict(X_train)
+7. Naive Bayes
+When to Use: Text classification, spam detection, etc.
+Avoid When: Strong feature correlations exist.
+Loss Function: Log Loss (Binary Cross-Entropy)
+python
+Copy code
+from sklearn.naive_bayes import GaussianNB
+
+X_train, y_train = [[1], [2], [3]], [0, 1, 0]
+model = GaussianNB().fit(X_train, y_train)
+predictions = model.predict(X_train)
+8. Gradient Boosting (GBM)
+When to Use: Complex datasets, high prediction accuracy.
+Avoid When: Overfitting risks, or need for fast inference.
+Loss Function: Custom loss (e.g., Log Loss for classification)
+python
+Copy code
+from sklearn.ensemble import GradientBoostingClassifier
+
+X_train, y_train = [[1], [2], [3]], [0, 1, 0]
+model = GradientBoostingClassifier().fit(X_train, y_train)
+predictions = model.predict(X_train)
+9. XGBoost
+When to Use: Large datasets, classification and regression.
+Avoid When: Simple problems that don’t require much power.
+Loss Function: Custom loss (Log Loss, MSE)
+python
+Copy code
+from xgboost import XGBClassifier
+
+X_train, y_train = [[1], [2], [3]], [0, 1, 0]
+model = XGBClassifier().fit(X_train, y_train)
+predictions = model.predict(X_train)
+10. Neural Networks
+When to Use: Complex patterns (e.g., image, voice recognition).
+Avoid When: Small datasets or limited computing resources.
+Loss Function: Binary Cross-Entropy, Categorical Cross-Entropy
+python
+Copy code
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+
+model = Sequential([Dense(10, activation='relu'), Dense(1, activation='sigmoid')])
+model.compile(optimizer='adam', loss='binary_crossentropy')
+11. K-Means Clustering
+When to Use: Unsupervised clustering when you know the number of clusters.
+Avoid When: Non-spherical data or if the number of clusters is unknown.
+Loss Function: Sum of Squared Errors (SSE)
+python
+Copy code
+from sklearn.cluster import KMeans
+
+X_train = [[1], [2], [3], [4], [5]]
+model = KMeans(n_clusters=2).fit(X_train)
+clusters = model.predict(X_train)
+12. Principal Component Analysis (PCA)
+When to Use: Dimensionality reduction for visualization or pre-processing.
+Avoid When: Interpretation of individual components is crucial.
+Loss Function: Reconstruction error (sum of squared distances)
+python
+Copy code
+from sklearn.decomposition import PCA
+
+X_train = [[1, 2], [2, 3], [3, 4]]
+model = PCA(n_components=1).fit(X_train)
+reduced_data = model.transform(X_train)
+13. Linear Discriminant Analysis (LDA)
+When to Use: Classification, feature extraction when groups are linearly separable.
+Avoid When: Data is not linearly separable.
+Loss Function: Classification error
+python
+Copy code
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+
+X_train, y_train = [[1], [2], [3]], [0, 1, 0]
+model = LinearDiscriminantAnalysis().fit(X_train, y_train)
+predictions = model.predict(X_train)
+14. Time Series Forecasting (ARIMA)
+When to Use: Time series data with a trend or seasonality.
+Avoid When: Data does not exhibit autocorrelation.
+Loss Function: Mean Squared Error (MSE)
+python
+Copy code
+from statsmodels.tsa.arima.model import ARIMA
+
+X_train = [1, 2, 3, 4, 5]
+model = ARIMA(X_train, order=(1, 1, 1)).fit()
+predictions = model.forecast(steps=5)
+15. Reinforcement Learning (Q-Learning)
+When to Use: Problems involving sequential decision making (e.g., games).
+Avoid When: There is no clear reward structure.
+Loss Function: Bellman Equation Loss
+python
+Copy code
+import numpy as np
+
+Q = np.zeros((5, 5))
+# Update rule: Q(state, action) = (1 - alpha) * Q(state, action) + alpha * (reward + gamma * max(Q(next_state, :)))
+Summary
+Each method has a specific use case and limitations. The loss function represents the "penalty" for incorrect predictions, and the sample code shows a basic implementation. Choosing the right model depends on your data and the problem context.
+
+:::
+
+---
+
+## Machine Learning Algorithms
+
+Here are a few projects that demonstrate my ML capabilities. 
+
+### Linear Regression (OLS)
+
+> [summary]
+> [View Project]()
+>
+
+### Logistic Regression
+
+> [summary]
+> [View Project]()
+>
+
+### Support Vector Machines (SVM)
+
+> [summary]
+> [View Project]()
+>
+
+### Decision Trees
+
+> [summary]
+> [View Project]()
+>
+
+### Random Forest
+
+> [summary]
+> [View Project]()
+>
+
+### K-Nearest Neighbors (KNN)
+
+> [summary]
+> [View Project]()
+>
+
+### Gradient Boosting
+
+> [summary]
+> [View Project]()
+>
+
+### XGBoost
+
+> [summary]
+> [View Project]()
+>
+
+### K-Means Clustering
+
+> [summary]
+> [View Project]()
+>
+
+### Principal Component Analysis (PCA)
+
+> [summary]
+> [View Project]()
+>
+
+
+### Reinforcement Learning
+
+> [summary]
+> [View Project]()
+>
+
+### Time Series Forecasting
+
+> [summary]
+> [View Project]()
+>
+
+---
+
+## Other Data Science Tools
+
+
+### Shiny 
+
+> To Shiny or Not to Shiny? Or Just Plain Not Too Shiny?
+> A simple tutorial describing how to implement a Python program using Shiny. Yes, you can use Shiny in Python. It's not just an R thing. 
+> [View Project](./shiny.qmd)
+

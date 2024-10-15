@@ -1,13 +1,29 @@
 ---
-title: "Home"
+title: "Austin Allen"
 ---
 
-Hello there!
 
-This is Austin Allen's personal website. Here's a little about Austin:
 
-* He is currently finishing his master's degree at Duke University and is scheduled to graduate in May of 2025 in the Biostatistics program.
-* He loves classical music, cheese, and trail running through the beautiful forests of North Carolina.
-* His interests include machine learning, bioinformatics, health, and statistical methods used in biological research.
 
-Connect with him on [LinkedIn](https://www.linkedin.com/in/austindallen/).
+---
+title: "Austin Allen"
+---
+
+
+## Welcome to My Portfolio
+
+Hi, I’m Austin Allen, a biostatistics graduate student at Duke University. I love using data science and machine learning to drive advancements in healthcare and biotech. Whether it’s predictive modeling, statistical analysis or cheese, you will find me eager to connect and talk about the things that make me tick. 
+
+Use this website to explore my projects and interests. You can find contact information on the [Contact](./contact.qmd) page. 
+
+---
+
+### Explore My Work
+- **[About Me](./about.qmd)**: Learn more about my background and expertise.
+- **[Projects](./projects.qmd)**: Dive into the projects that showcase my skills in predictive modeling, data science, and beyond.
+- **[Resume](./resume.qmd)**: Take a look at my professional experiences and skills.
+
+---
+
+Feel free to reach out if you’re interested in collaboration or learning more about my work!
+
